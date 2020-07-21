@@ -1,0 +1,301 @@
+<!-- header -->
+<!-- include Class file -->
+<?php  ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Template</title>
+
+    <!--Set CSS  file -->
+    <link href="#" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 1em;
+            line-height: 2rem;
+            color: #333;
+            margin: 0;
+        }
+
+
+        .navbar {
+            overflow: hidden;
+            padding: 20px 10px;
+            background-color: #222;
+            border-color: #080808;
+            color: white;
+
+        }
+
+        .navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.5em;
+            line-height: 25px;
+        }
+
+        .nav {
+            margin-bottom: 0;
+            list-style: none;
+
+        }
+
+        .navbar-brand {
+            font-size: 2rem !Important;
+            color: white;
+        }
+
+        .navbar-right li {
+            display: inline;
+        }
+
+        .navbar-right {
+            float: right;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 14%;
+            background-color: #f1f1f1;
+            position: absolute;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .sidebar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        div.content {
+            margin-left: 15%;
+            padding: 1px 16px;
+            height: 100vh;
+        }
+
+        hr.solid {
+            border-top: 3px solid #bbb;
+            margin-bottom: 2em;
+        }
+
+
+        table {
+            width: 98%;
+            max-width: 98%;
+            margin: 20px 0;
+        }
+
+        table.table-style {
+            color: #333333;
+            border-width: 1px;
+            border-color: #3A3A3A;
+            border-collapse: collapse;
+            text-align: left;
+
+        }
+
+        table.table-style th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #f1f1f1;
+            background-color: #d1d1d1;
+        }
+
+        table.table-style tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        table.table-style td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #f1f1f1;
+            background-color: #ffffff;
+        }
+
+
+
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 1.5em;
+            cursor: pointer;
+            margin: 2px;
+
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        .info {
+            background-color: #2196F3;
+        }
+
+        /* Blue */
+        .info:hover {
+            background: #0b7dda;
+        }
+
+        .warning {
+            background-color: #ff9800;
+        }
+
+        /* Orange */
+        .warning:hover {
+            background: #e68a00;
+        }
+
+        .danger {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .danger:hover {
+            background: #da190b;
+        }
+
+        .default {
+            background-color: #e7e7e7;
+            color: black;
+        }
+
+        /* Gray */
+        .default:hover {
+            background: #ddd;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+    <div id="wraper">
+
+        <!-- top_nav -->
+
+        <div class="navbar">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../index.php">Visit Home Page</a>
+            </div>
+
+
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li>
+                    <a href="#">John Doe</a>
+                </li>
+
+                <li>
+                    <a>LOGOUT</a>
+
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+
+        <!--side_nav  -->
+        <div class="sidebar">
+
+            <li>
+                <a href="index.php">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">ITEM #1</a>
+            </li>
+            <li>
+                <a href="#">ITEM #2</a>
+            </li>
+            <li>
+                <a href="#">ITEM #3</a>
+            </li>
+            <li>
+                <a href="#">ITEM #4</a>
+            </li>
+            <li>
+                <a href="#">ITEM #5</a>
+            </li>
+
+        </div>
+
+        <div class="content">
+            <h1>ITEM #1</h1>
+            <hr class="solid">
+            <p></p>
+            <a href="#" class="btn success">Add new</a>
+            <p></p>
+            <div class="col-md-12">
+                <table class="table table-style">
+                    <thread>
+                        <tr>
+                            <th>Column 1</th>
+                            <th>Column 2</th>
+                            <th>Column 3</th>
+                            <th>Column 4</th>
+                            <th>Column 5</th>
+                            <th>Column 6</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        <tr>
+                            <td>Title 1</td>
+                            <td>Title 2</td>
+                            <td>Title 3</td>
+                            <td>Title 4</td>
+                            <td>Title 5</td>
+                            <td>
+                                <!-- Actions column -->
+                                <div>
+                                    <!-- Edit -->
+                                    <a href="#" class="">Edit </a>
+                                    <!-- Delete -->
+                                    <a href="#" class=""> Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- footer.php -->
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
+</body>
+
+</html>
