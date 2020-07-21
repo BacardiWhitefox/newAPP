@@ -1,0 +1,97 @@
+https://www.codexworld.com/upload-store-image-file-in-database-using-php-mysql/
+
+<?php 
+
+   $statusMsg = '';
+
+$photo = new Photo();
+
+if(isset($_POST["submit"]) && !empty($_FILES["file_upload"]["name"])){
+    
+//    echo"<pre>";
+//print_r($_FILES['file_upload']);
+//
+//echo"<pre>";
+    
+    
+    // File upload path
+$targetDir = "../images/";
+$fileName = $_FILES["file_upload"]["name"];
+$targetFilePath = $targetDir . basename($fileName);
+$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+$title = $_POST['title'];
+$description = $_POST['description'];
+$size = $_FILES["file_upload"]["size"];
+  
+    
+    // Allow certain file formats
+    $allowTypes = array('jpg','png','jpeg','gif','pdf');
+    if(in_array($fileType, $allowTypes)){
+        // Upload file to server
+        if(move_uploaded_file($_FILES["file_upload"]["tmp_name"], $targetFilePath)){
+            // Insert image file name into database
+            $insert = $database->query("INSERT into photos (title, description, file_name, size) VALUES ( '" .$title. "', '" . $description . "', '" . $fileName . "', '" . $size . "')");
+            if($insert){
+                $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+            }else{
+                $statusMsg = "File upload failed, please try again.";
+            } 
+        }else{
+            $statusMsg = "Sorry, there was an error uploading your file.";
+        }
+    }else{
+        $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+    }
+}else{
+    $statusMsg = 'Please select a file to upload.';
+}
+
+// Display status message
+echo $statusMsg;
+?>
+
+<!-- Navigation -->
+
+<?php include( 'includes/top_nav.php' ) ?>
+
+<!-- Sidebar Menu Items -->
+
+<?php include( 'includes/side_nav.php' ) ?>
+
+
+<div class="content">
+    <h1>Add new file </h1>
+    <hr class="solid">
+
+    <div class="container">
+
+        <!-- Page Heading -->
+        <?php 
+
+    
+    
+    if(!empty($upload_errors)){echo $the_message;} ?>
+
+
+        <form action='upload.php' enctype='multipart/form-data' method='post'>
+            <div class='form-group'>
+                <label for='caption'>Title</label>
+                <input type='text' name='title'>
+            </div>
+            <div class='form-group'>
+                <label for='caption'>Description</label>
+                <textarea name='description' rows='10' cols='120'></textarea>
+            </div>
+            <div class='form-group'>
+                <label for='caption'>Upload</label>
+            </div>
+            <input type='file' name='file_upload'><br>
+            <input type='submit' name='submit'>
+    </form>
+
+
+    </div>
+
+    <!-- /.container-fluid -->
+
+</div>
