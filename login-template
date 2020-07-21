@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+        .container_login {
+        padding: 16px;
+        background-color: #222;
+        width: 33%;
+        margin: 3rem auto;
+        color: white;
+        padding: 25px;
+        }
+
+
+        input[type=text], input[type=password] {
+        width: 95%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        }
+
+        </style>
+</head>
+
+<body>
+   
+    <div class="navbar-header">
+        <a class="" href="../index.php">Back to Home Page</a>
+    </div>
+
+    <div class="container_login">
+        <h1>Login</h1>
+
+        <h4 class="bg-danger">error mesage</h4>
+
+        <form id="login-id" action="" name="login" method="post">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" value="">
+
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" value="">
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
