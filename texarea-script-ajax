@@ -1,0 +1,52 @@
+tinymce.init({selector:'textarea'});
+
+    <!--WYSIWYG -->
+     <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js" referrerpolicy="origin"></script>
+     <script src="js/scripts.js"></script>
+     
+     //if refresh
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['postdata'] = $_POST;
+    unset($_POST);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+//// LOGIN
+<?php
+
+if ($session->is_signed_in()) {
+    
+    redirect("index.php");
+    
+}
+
+if(isset($_POST['submit'])){
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);   
+      
+    //Method to check database user
+   $user_found = User::verify_user($username, $password);
+    
+    
+    if($user_found) {
+        
+        $session->login($user_found);
+        
+        redirect("index.php");
+
+        
+    } else {
+        $the_message = "Your password or Username are incorrect";
+        
+    }
+
+}  else {
+    
+    $username = "";
+    $password = "";
+    $the_message = "";
+}
+
+?>
+
