@@ -1,0 +1,37 @@
+<!-- top_nav.php -->
+<?php 
+if ($session->is_signed_in()) {
+
+$user_id = $session->user_id;
+$found_user = User::find_by_id($user_id);
+$username = $found_user->username;
+$log_in_out =  "<a href='logout.php'>Log Out</a>";
+} else {
+    
+    $username = "";
+    $log_in_out =  "<a href='login.php'>Login</a>";
+}
+
+?>
+
+<div class="navbar">
+<div class="navbar-header">
+    <a class="navbar-brand" href="../index.php">Visit Home Page</a>
+</div>
+
+
+<!-- Top Menu Items -->
+<ul class="nav navbar-right top-nav">
+           
+            <li>
+                <a href="#"><i class="fa fa-fw fa-user"></i> <?php echo $username; ?></a>
+            </li>
+
+            <li>
+               <span><?php echo $log_in_out; ?></span>
+
+            </li>
+        </ul>
+    </li>
+</ul>
+</div>
