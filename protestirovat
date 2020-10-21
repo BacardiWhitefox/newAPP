@@ -1,0 +1,59 @@
+<?php require_once("includes/init.php"); ?>
+<?php 
+/* if ($database->connection){
+	echo "true <br/>";
+}else{
+	echo "False";
+	
+}
+
+
+$sql = "SELECT * FROM users WHERE id=1";
+$result = $database->query($sql);
+$user_found = mysqli_fetch_array($result);
+echo $user_found['username'];
+
+
+$string = "werwerwr";
+echo $database->escape_string($string); */
+
+	//$user = new User();
+/* 	$result_set = User::find_all_users();
+	$row = mysqli_fetch_array($result_set);
+	foreach ($result_set as $row): 
+		$user_id = $row['id'];
+		$user_name = $row['username'];
+		
+		echo $user_id . " - " . $user_name . "<br>";
+		
+	endforeach; */
+	
+	
+	
+	/*  while($row = mysqli_fetch_array($result_set)){
+		
+		echo $row['username'] . "<br/>";
+	
+	}  */
+	
+	//Object Oriented way
+	$found_user = User::user_by_id(1);
+	/* $user = new User();
+	//asign values to objects
+	$user->id = $found_user['id'];
+	$user->username = $found_user['username'];
+	$user->password = $found_user['password'];
+	$user->first_name = $found_user['first_name'];
+	$user->last_name = $found_user['last_name']; */
+	$user = User::instantiation($found_user);
+	
+	echo $user->username;
+
+
+
+?>
+
+</div>
+</body> 
+
+</html>
