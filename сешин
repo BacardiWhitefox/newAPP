@@ -1,13 +1,16 @@
 <?php 
 
 	class Session {
+		
 		//Properties
-		private $signed_in = false; //default value
+		public $signed_in = false; //default value
 		public $user_id;
+
 
 		
 		//Auto start session & check login
 		function __construct(){
+
 			session_start();
 			
 			$this->check_the_login();
@@ -26,18 +29,22 @@
 		//Method: login user
 		//issigning user Id from User class
 		public function login($user){
-			
-			$this->user_id = $_SESSION['user_id']  = $user->id;
-			$this->signed_in = true;
-			
-						
+			if($user){
+				
+				$this->user_id = $_SESSION['user_id'] = $user['id'] ;
+				$this->signed_in = true;
+
+			}
 		} 
 		
 		//Method: logout user
 		public function logout($user){
 			unset($this->user_id);
 			unset($_SESSION['user_id']);
+
 			$this->signed_in = false;
+			session_destroy();
+
 
 		}
 		
@@ -58,6 +65,7 @@
 		} 
 		
 	}
+	
 	//session wird create automaticaly
 	$session = new Session();
 
