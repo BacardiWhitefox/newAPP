@@ -4,21 +4,25 @@
 <h1>Login page</h1>
 <?php 
 
+/*  foreach ($_SESSION as $key=>$val){
+    echo $key." ".$val."<br/>"; 
+ } */
+
 if(isset($_POST['submit'])) {
 	$username = trim($_POST['username']);
 	$password = trim($_POST['password']);
 	
 	//Method to check DB User
-	$user_found = User::verify_admin($username, $password);
+	$user_found = User::verify_user($username, $password);
 
 	if($user_found) {
+		
 		$session->login($user_found);
+		
 		redirect("admin_zone.php");
 	}else{
 		
 		$the_message = "Your password or username are incorrect or you are not Admin";
-		$username = "";
-		$password = "";
 	}
 
 
@@ -33,7 +37,7 @@ if(isset($_POST['submit'])) {
 
 <div>
 <div><?php  if(!empty($the_message)){ echo  $the_message;} ?>
-<form action="" method="post">
+<form id="login-id" action="" name="login" method="post">
 
 <div>
 <div>
