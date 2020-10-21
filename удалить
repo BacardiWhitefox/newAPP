@@ -1,0 +1,29 @@
+<?php include("includes/init.php"); ?>
+<?php if(!$session->is_signed_in()) {redirect("login.php");} ?> 
+
+
+<?php 
+
+if(empty($_GET['id'])) {
+    
+    redirect("roles.php");
+    
+}
+
+$role = Role::find_by_id($_GET['id']);
+
+if($role) {
+    
+    $role->delete();
+    redirect("roles.php");
+    
+    
+} else {
+  
+    redirect("roles.php");
+    
+}
+
+
+
+?>
