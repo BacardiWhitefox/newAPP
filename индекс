@@ -1,0 +1,61 @@
+<?php include('includes/header.php'); ?>
+<?php if($session->is_signed_in()){redirect("admin_zone.php");} ?>
+
+<h1>Login page</h1>
+<?php 
+
+if(isset($_POST['submit'])) {
+	$username = trim($_POST['username']);
+	$password = trim($_POST['password']);
+	
+	//Method to check DB User
+	$user_found = User::verify_admin($username, $password);
+
+	if($user_found) {
+		$session->login($user_found);
+		redirect("admin_zone.php");
+	}else{
+		
+		$the_message = "Your password or username are incorrect or you are not Admin";
+		$username = "";
+		$password = "";
+	}
+
+
+} else {
+
+	$username = "";
+	$password = "";
+	$the_message = "";
+}
+
+?>
+
+<div>
+<div><?php  if(!empty($the_message)){ echo  $the_message;} ?>
+<form action="" method="post">
+
+<div>
+<div>
+	<label for="username">Username</label>
+	<input type="text" class="" name="username" required value="<?php echo $username; ?>">
+</div>
+<div>
+	<label for="password">Password</label>
+	<input type="password" class="" name="password" required value="<?php echo $password; ?>">
+</div>
+ 
+ </div>
+ <input type="submit" name="submit" value="Submit" class="">
+</form>
+
+
+</div>
+
+
+
+
+</div>
+</body> 
+
+</html>
