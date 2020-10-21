@@ -1,0 +1,190 @@
+<?php 
+class User {
+	
+	public $id;
+	public $username;
+	public $password;
+	public $first_name;
+	public $last_name;
+
+	
+/* 	public static function find_all_users(){
+		
+		global $database;
+		
+		$result_set = $database->query("SELECT * FROM users");
+		return $result_set;
+
+	} */
+	
+		public static function find_all_users(){
+		
+		return self::find_this_query("SELECT * FROM users");
+		
+		//TEST
+		
+		/* 	//$user = new User();
+			$result_set = User::find_all_users();
+			
+			 while($row = mysqli_fetch_array($result_set)){
+				
+				echo $row['username'] . "<br/>";
+
+			} 	
+
+			//list
+			$result_set = User::find_all_users();
+			$row = mysqli_fetch_array($result_set);
+			foreach ($result_set as $row): 
+				$user_id = $row['id'];
+				$user_name = $row['username'];
+				
+				echo $user_id . " - " . $user_name . "<br>";
+				
+			endforeach;			
+			
+			*/
+			
+
+	}
+	
+/* 	public static function user_by_id($id) {
+		
+		global $database;
+		
+		$result = $database->query("SELECT * FROM users WHERE id=$id LIMIT 1");
+		$found_user = mysqli_fetch_array($result);
+
+	} */
+	
+		public static function user_by_id($id) {
+	
+		$the_result_array = self::find_this_query("SELECT * FROM users WHERE id=$id LIMIT 1");
+		//$found_user = mysqli_fetch_array($the_result_array);
+		return !empty($the_result_array) ? ($the_result_array) : false;
+
+		//TEST
+/* 		$found_user = User::user_by_id(1);
+		echo $found_user['username'] */
+
+	}
+	
+		
+	
+	
+	public static function find_this_query($sql){
+			global $database;
+
+			$result_set = $database->query($sql);
+			$the_result_array = mysqli_fetch_array($result_set);
+			return $the_result_array;
+
+		
+	}
+	
+	
+	public static function verify_user($username, $password){
+		global $database;
+		$username = $database->escape_string($username);
+		$password = $database->escape_string(md5($password));
+		
+		$sql = "SELECT * FROM users WHERE";
+		$sql .= " username = '{$username}'";
+		$sql .= " AND password = '{$password}'";
+		$sql .= " LIMIT 1";
+		
+		$the_result_array = self::find_this_query($sql);
+		return !empty($the_result_array) ? ($the_result_array) : false;
+		
+	}
+	
+		public static function verify_admin($username, $password){
+			global $database;
+			$username = $database->escape_string($username);
+			$password = $database->escape_string(md5($password));
+			
+			$sql = "SELECT * FROM users WHERE";
+			$sql .= " username = '{$username}'";
+			$sql .= " AND password = '{$password}' AND role_id=1";
+			$sql .= " LIMIT 1";
+			
+			$the_result_array = self::find_this_query($sql);
+			return !empty($the_result_array) ? ($the_result_array) : false;
+		
+	}
+	
+	
+	public static function instantiation($found_user){
+		$the_object = new self;
+		//asign values to objects
+		$the_object->id 		= $found_user['id'];
+		$the_object->username 	= $found_user['username'];
+		$the_object->password 	= $found_user['password'];
+		$the_object->first_name = $found_user['first_name'];
+		$the_object->last_name 	= $found_user['last_name']; 
+		
+		return $the_object;
+	}
+	
+	
+	public function create(){
+		global $database;
+		
+        $sql ="INSERT INTO users (username, password, first_name, last_name, role_id) VALUES ('";
+		$sql .= $database->escape_string($this->username) . "', '";
+		$sql .= md5($database->escape_string($this->password)) . "', '";
+		$sql .= $database->escape_string($this->first_name) . "', '";
+		$sql .= $database->escape_string($this->last_name) . "', '";
+		$sql .= $database->escape_string($this->role_id) . "')";
+		
+		if($database->query($sql)){
+
+		$this->id = $database->the_insert_id();
+			return true;
+			
+		}else{
+			return false;
+			
+		}
+    }
+
+	
+	
+	public function update(){
+		global $database;
+		
+		$sql ="UPDATE users SET ";
+		$sql .="username= '" . $database->escape_string($this->username) .  "', '";
+		$sql .="password= '" . md5($database->escape_string($this->password)) .  "', '";
+		$sql .="first_name= '" . $database->escape_string($this->first_name)  .  "', '";	
+		$sql .="last_name= '" . $database->escape_string($this->last_name) .  "', ')";
+		
+		$database->query($sql);
+		return (mysqli_affected_rows($database->connection)== 1) ? true : false;
+
+	}
+	
+	public function delete(){
+		global $database;
+		
+		$sql = "DELETE FROM users WHERE id=" . $database->escape_string($this->id) . " LIMIT 1";
+		
+		$database->query($sql);
+		
+		if($sql){
+			echo "DELETE";
+		}
+	} 
+	
+		
+
+
+	
+	
+}	
+
+
+
+
+
+?>
