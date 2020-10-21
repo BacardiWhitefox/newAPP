@@ -1,208 +1,75 @@
-# newAPP
-Some APP
-Checkliste LAP 
-Anforderungen 
+4. Создайте структуру
+• Структура папки (архитектурный шаблон MVC)
+Пример: https://www.codeproject.com/Articles/1080626/Code-Your-Own-PHP-MVC-Framework-in-Hour
+• Файлы (index.php, формы, стартовая страница ...)
 
-1.	Technische Anforderungen, bevor Programmieren 
-•	Festplatte mit SATA-Kabel verbinden 
-•	Monitor, Netzwerkkabel, Stromkabel & Tastatur mit PC verbinden 
-
-2.	Virtuelle Maschine (VirtualBox) einrichten 
-•	Image (CentOS) vorhanden und importieren 
-•	SSH Verbindung herstellen 
-•	Evtl. Desktop Environment installieren für einfachere Handhabung 
-
-Motor Verein Forum ist ein webbasiertest File-exchangeForum.  
-ReadMe: eine neue Website erstelle. Motor-Club Verein
-	Es gibt 3 Rollen: Admin, Administrator, User
-	Es gibt Admin Panel
-	Es gib User Portal (User/Administrator) geben
-	Es gibt 3 Sektionen/Themen: Autos, Motorräder, Oldtimer
-	Es gibt User Login Seite
-	Es gibt Admin Login Seite
-	Es gibt Admin Panel:
--	Header (mit User Name)
--	Es gibt Seite „Sektionen“
--	Es gibt Seite „Users“
--	Es gibt Seite „Posts“
-	Es gib User Portal
--	Header (mit Username, Logout Button)
--	Es gibt Seite „Sektion“ hier werden alle Posts zu diesem Thema angezeigt
-	In Sektionen user kann neue Posts erstellen
-	User kann ein File in Post hinzufügen
-
-	Admin kann:
--	login/logout
--	neue User anlegen
--	Alle User sehen/verwalten
--	Alle Sektionen sehen/verwalten
--	Alle Posts sehen/verwalten
-
-	Administrator hat/kann: 
-	alle Sektionen zugeordnet/sehen
--	register/login/logout
--	alle Beiträge/Files alle Sektionen sehen
--	neue Posts/Files in alle Sektionen erstellen
--	eigene Beiträge/Files bearbeiten/löschen
-
-	User hat/kann: 
-	nur zu eine Sektion zugeordnet/sehen
--	register/login/logout
--	alle Beiträge/Files seine Sektion sehen
--	neue Beiträge/Files in seine Sektion erstellen
--	eigene Beiträge/Files bearbeiten/löschen
+5. Создайте соединение базы данных с сервером Linux на PHP.
+• Объектно-ориентированный (БД классов)
+• mySQLi
  
-3.	Datenbank erstellen 
-•	Aufzeichnen Datenbankmodell (ER-Diagramm) 
-TOOL: https://dbdiagram.io/d/5cf6c2f41f6a891a6a6594c8 
-HILFE: https://erdplus.com/#/edit-diagram/941470 
-•	Normalformen einhalten 
-•	Datenbank erstellen  
-Tables: 
-1.	Users
-a.	ID (PK, AI, not Null)
-b.	fname (varchar 80, nicht Null)
-c.	lname (varchar 80, Null)
-d.	email (varchar 124, nicht Null)
-e.	password (varchar, nicht Null)
-f.	address_id (int, 11, Null)
-g.	role_id (int, 11, not Null)
-h.	section_id (int, 11, NULL)
-
-2.	Roles
-a.	ID (PK, AI, not Null)
-b.	title (varchar 80, nicht Null)
-
-3.	Sections
-a.	ID (PK, AI, not Null)
-b.	title (varchar 80, nicht Null)
-
-4.	Files
-a.	ID (PK, AI, not Null)
-b.	title (varchar, 255, not Null)
-c.	description (memo)
-d.	user_id (int, 11, not null)
-5.	Address
-a.	ID (PK, AI, not Null)
-b.	street (varchar, 255, not null)
-c.	city (varchar 80, nicht Null)
-d.	plz (int 11, not Null)
-	
-
-
-4.	Struktur erstellen
-•	Ordner Struktur (MVC achitectural pattern)
-Beispiel: https://www.codeproject.com/Articles/1080626/Code-Your-Own-PHP-MVC-Framework-in-Hour    
-•	Files (index.php, Forms, Start Seite…)
-
-5.	In PHP die Datenbankverbindung mit Linux Server erstellen 
-•	Objektorientiert (Class DB)
-•	mySQLi 
- 
-6.	PHP Login Skript erstellen 
-•	Loginseite für User (Class User)
-•	Loginseite für Admin (Class Admin)
-•	Passwort muss gehasht sein 
-•	MySQLi prepare Statements verwenden
+6. Создайте сценарий входа в систему PHP.
+• Страница входа для пользователей (пользователей класса)
+• Страница входа для администратора (администратора класса)
+• Пароль должен быть хеширован
+• Используйте операторы подготовки MySQLi
  
  
-7.	PHP User/Administrator Portal erstellen  
-•	User Login/Logout 
-•	Header/Navigationsleiste mit Namen von User (use Session)
-•	Sektion/-s
-	Sektion name (in Header)
-	Posts Liste
-	CRUD eigene Posts 
-Example image upload : https://www.codexworld.com/upload-store-image-file-in-database-using-php-mysql/ 
+7. Создайте портал пользователя / администратора PHP.
+• Вход / выход пользователя
+• Заголовок / панель навигации с именем пользователя (использовать сеанс)
+• Раздел / ы
+ название раздела (в заголовке)
+ Список сообщений
+ Собственные сообщения CRUD
+Пример загрузки изображения: https://www.codexworld.com/upload-store-image-file-in-database-using-php-mysql/
  
-8.	PHP Admin Panel erstellen 
-•	Login/Logout
-•	Header/Navigationsleiste mit Namen von User
-•	User-Liste (alle User)
-•	Sektionen-Liste (alle Sektionen)
-•	CRUD Sektionen
-•	CRUD Users
-	Wenn neuer User angelegt/geändert wird, Check der PLZ mittels JS, sodass das Formular nicht neu geladen wird 
+8. Создайте административную панель PHP.
+• Вход / выход
+• Заголовок / панель навигации с именем пользователя
+• Список пользователей (все пользователи)
+• Список разделов (все разделы)
+• разделы CRUD
+• Пользователи CRUD
+ Если новый пользователь создается / изменяется, проверьте почтовый индекс с помощью JS, чтобы форма не перезагружалась
 
-Prüfung Dauer 
-Start 8:00 
-Vorwort - 5-10 min
-Computer einrichten - 10-15 min
-Installieren einrichten Code Editor -10-15 min
-Image auf VM einspielen
-Netzwerkbrücke Einstellungen prüfen
-SSH konnection erstellen (WinSCP)
-Debug script starten (Putty)
-{    tail -f /var/log/httpd/error_log   }
-	Umsetzung Plan  (+zeit)
-	Graphische ER Diagram von DB
-	Verbindung zu ihre VM im Windows erstellen
-	Eine „Hello World“ Datei erstellen und in Win Browser aufrufen (code anzeigen)
-	Eine PHP Server Einstellungen Info anzeigen ( phpinfo(); )
-PHP Info Site
-V1.: in index.php (after db connect) 
-phpinfo();
+Продолжительность экзамена
+Начало 8:00
+Предисловие - 5-10 мин.
+Настройка компьютера - 10-15 мин.
+Установить редактор кода настройки -10-15 мин.
+Импортировать образ в ВМ
+Проверьте настройки сетевого моста
+Создать SSH-соединение (WinSCP)
+Запустить сценарий отладки (замазка)
+{tail -f / var / log / httpd / error_log}
+План реализации (+ время)
+Графическая ER диаграмма из БД
+Создайте подключение к вашей виртуальной машине в Windows
+Создайте файл «Hello World» и вызовите его в браузере Win (показать код)
+Показать информацию о настройках сервера PHP (phpinfo ();)
+Информационный сайт PHP
+V1 .: в index.php (после подключения к базе данных)
+phpinfo ();
 V2.
-nano /var/www/html/info.php
-<?php
-phpinfo();
+нано /var/www/html/info.php
+<? php
+phpinfo ();
 ?>
-Doku erstellen
-Abgabe um 10:00 
-Teil 1 Umsetzung:
-Es existier eine Web Seite einen Verein „Klub“
-Es existiert 3 Interessenbereiche:
-	Moto
-	Auto
-	LKW  
-Administrator kann User Konten erstellen. Mit die der User kann sich dann in der Webseite anzumelden.
-Beim User anlegen, soll eine Anlegung-Überprüfung erstellt (nur Ziffern, nicht lehr) mit Warnung Info. Aber trotzdem speichern fordern. 
-User und Admin habe separate Login Seiten.
+Создать документацию
+Доставка в 10:00
+Реализация части 1:
+Есть сайт ассоциации "Клуб".
+Есть 3 области интересов:
+Мото
+автомобиль
+грузовая машина
+Администратор может создавать учетные записи пользователей. С помощью которого пользователь может затем войти на сайт.
+При создании пользователя должна быть создана проверка создания (только цифры, не пустая) с предупреждающей информацией. Но все же прошу сэкономить.
+Пользователь и администратор имеют отдельные страницы входа.
 
  
-Erstelle eine Datenbank (phpmyadmin (nicht vergessen user und db enstellungen ändern)
-Ordner Struktur anlegen
-Erstellen eine „mysqli“ Verbindung zu Datenbank (Object oriented)
-Erstellen eine Login Funktion (Classe erstellen und verwenden)
-Es soll 2 separate login pages für User und Admin geben
-Check Browser.
-Login als Start Seite
-Admin Bereich erstellen
-	Wo Admin neue User anlegen und bearbeiten kann
-	Und Download Berreich
-User kann nur einen Interesantesbereich zugewiesen werden
-Und Users könne alle Dateien den Bereich ansehen und herunterladen können
-Logout für User und Admin
-Mittagspause 12:00 bis 12:45
-Teil 1 Abgabe - 13:45
-Fachgespräch (20 min)
-Teil 2 Umsetzung:
-Benutzer Bereich
-Logout
-Darstellung sollte in IE11 & Firefox ident sein
-Überschriften und Tabellen
-Seite mit Dokus mit Titels und so 
-Kennwort ändern
-
-Admin Bereich 
-Logout
-All Users
-All Leiter
-Download Bereich
-Interessentenbereiche neue anlegen
-Eine Funktion für Administrator, mit den click auf User ins seinen Ansicht zu wechseln
-
-Benutzer Hand Buch erstellen
-Kurze Anleitung für End User über die Funktionen von Plattform 
-Teil 2 Abgabe – 16:00
-Abbau 16:00
-
-
-
-
- 
-
-
-10
-Bevor Umsetzung:
-Arbeits plan mit zeut shetzungen (gesammt Zeit)
+Создайте базу данных (phpmyadmin (не забудьте изменить настройки пользователя и db)
+Создать структуру папок
+Создайте соединение mysqli с базой данных (объектно-ориентированное)
+Создайте функцию входа в систему (создайте и используйте класс)
+Должно быть 2 отдельные страницы входа для пользователей и
