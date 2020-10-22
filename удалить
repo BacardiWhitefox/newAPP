@@ -1,28 +1,30 @@
 <?php include("includes/init.php"); ?>
-<?php if(!$session->is_signed_in()) {redirect("login.php");} ?> 
+<?php //if(!$session->is_signed_in()) {redirect("login.php");} ?> 
 
 
 <?php 
 
 if(empty($_GET['id'])) {
     
-    redirect("roles.php");
+    //redirect("admin_zone.php");
     
 }
 
-$role = Role::find_by_id($_GET['id']);
+$user = User::user_by_id($_GET['id']);
 
-if($role) {
+if($user) {
+	
+		$sql = "DELETE FROM users WHERE id=" . $user['id'] . " LIMIT 1";
+		$database->query($sql);
+		
+		if($sql){
+			echo "DELETE";
+			redirect("admin_zone.php");
+			
+		}
+	} 
     
-    $role->delete();
-    redirect("roles.php");
-    
-    
-} else {
-  
-    redirect("roles.php");
-    
-}
+
 
 
 
