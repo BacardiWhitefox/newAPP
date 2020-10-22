@@ -1,0 +1,73 @@
+<?php include('includes/header.php'); ?>
+
+<a href='includes/logout.php'>Log Out</a>
+<?php
+ 
+$the_message = "";
+$id = ($_GET['id']);
+ if(empty($id)) {
+    redirect("admin_zone.php");
+} else {
+
+$user = User::user_by_id($id);
+
+$username = $user['username'];
+$password = $user['password'];
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+
+	if(isset($_POST['update'])){
+		  if($user) {
+			$username         = $_POST['username'];
+			$first_name       = $_POST['first_name'];
+			$last_name        = $_POST['last_name'];
+			$password         = $_POST['password'];
+			//$user->role_id			= $_POST['role_id'];;
+
+			$sql = "UPDATE users SET username='$username', password='$password', first_name='$first_name', last_name='$last_name' WHERE id=$id LIMIT 1";
+			
+			$database->query($sql);
+			redirect("admin_zone.php");
+	
+	  } else {
+		  $the_message = "" ;
+	  }
+	}
+}
+
+
+
+?>
+
+<div>
+<div><?php  if(!empty($the_message)){ echo  $the_message;} ?>
+<form action="" method="post">
+
+<div>
+<div>
+	<label for="username">Username</label>
+	<input type="text" class="" name="username" required id="username" value="<?php echo $username; ?>">
+</div>
+<div>
+	<label for="password">Password</label>
+	<input type="password" class="" name="password" required id="password" value="<?php echo $password; ?>">
+</div>
+<div>
+	<label for="password">first_name</label>
+	<input type="text" class="" name="first_name" id="first_name" value="<?php echo $first_name; ?>">
+</div>
+<div>
+	<label for="password">last_name</label>
+	<input type="text" class="" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
+</div>
+ 
+ </div>
+ <input type="submit" name="update" value="Update" class="">
+</form>
+
+
+</div>
+</div>
+</body> 
+
+</html>
